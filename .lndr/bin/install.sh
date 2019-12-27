@@ -12,6 +12,8 @@ echo -n "Installing executable ... "
 ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
 echo "done."
 
+export LANDER_HOME=~/.lndr
+
 echo -n "Initializing zone registry ... "
 mkdir -p ${LANDER_HOME}/zones
 echo "done."
