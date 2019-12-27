@@ -9,7 +9,7 @@ unzip lz.zip -d ~/.lndr
 echo "done."
 
 echo -n "Installing executable ... "
-ln -s ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
+ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
 echo "done."
 
 echo -n "Initializing zone registry ... "
