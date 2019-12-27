@@ -59,9 +59,12 @@ function listZones {
 
 function createZone {
     zonePath=${1:-$(pwd)}
+    echo ${zonePath}
     zoneDirname=`basename ${zonePath}`
+    echo ${zoneDirname}
     cp ${LANDER_HOME}/bin/initial.lz ${zonePath}/.lz
-    echo "" && echo "initZone ${zonePath}" >> ${zonePath}/.lz
+    echo "" >> ${zonePath}/.lz
+    echo "initZone ${zonePath}" >> ${zonePath}/.lz
     ln -s ${zonePath}/.lz ${LANDER_HOME}/zones/${zoneDirname}
 }
 

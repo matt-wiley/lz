@@ -5,14 +5,13 @@ curl -sL https://github.com/wileymab/landing-zone/blob/master/downloads/lz.zip?r
 echo "done."
 
 echo -n "Unpacking LZ files ... "
-unzip lz.zip -d ~/.lndr
+unzip -o lz.zip -d ~/.lndr
+export LANDER_HOME=~/.lndr
 echo "done."
 
 echo -n "Installing executable ... "
 ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
 echo "done."
-
-export LANDER_HOME=~/.lndr
 
 echo -n "Initializing zone registry ... "
 mkdir -p ${LANDER_HOME}/zones
