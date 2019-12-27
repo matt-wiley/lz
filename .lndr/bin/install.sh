@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
-# curl down the zip of the ./bin dir
-
+echo -n "Downloading LZ archive ... "
+curl -sL https://github.com/wileymab/landing-zone/blob/master/downloads/lz.zip?raw=true -o lz.zip
+echo "done."
 
 echo -n "Unpacking LZ files ... "
 unzip lz.zip -d ~/.lndr
 echo "done."
 
 echo -n "Installing executable ... "
-link ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
+ln -s ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
 echo "done."
 
 echo -n "Initializing zone registry ... "
