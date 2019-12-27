@@ -1,0 +1,13 @@
+#!usr/bin/env bash
+
+function initZone {
+    local zoneRootPath="$1"
+    export ZONE_ROOT="$zoneRootPath"
+    cd $ZONE_ROOT
+    
+    alias ...='cd $ZONE_ROOT'
+
+    # Teardown this function once complete.
+    unset -f initZone
+    # -------------------------------------------------------------------------
+}
