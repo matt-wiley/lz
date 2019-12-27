@@ -14,7 +14,7 @@ ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
 echo "done."
 
 echo -n "Initializing zone registry ... "
-mkdir -p ${LANDER_HOME}/zones
+mkdir -p ${LANDER_HOME}/zones || true
 echo "done."
 
 echo -n "Initalizing zone loader in .bashrc ... "

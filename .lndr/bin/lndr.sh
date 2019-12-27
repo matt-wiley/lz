@@ -65,7 +65,7 @@ function createZone {
     cp ${LANDER_HOME}/bin/initial.lz ${zonePath}/.lz
     echo "" >> ${zonePath}/.lz
     echo "initZone ${zonePath}" >> ${zonePath}/.lz
-    ln -s ${zonePath}/.lz ${LANDER_HOME}/zones/${zoneDirname}
+    ln -sf ${zonePath}/.lz ${LANDER_HOME}/zones/${zoneDirname} || true
 }
 
 
