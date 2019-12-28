@@ -1,5 +1,28 @@
 #!/usr/bin/env bash
 
+echo ""
+echo "Ensuring dependecies are installed you may be prompted for your password ... "
+requirements="curl unzip"
+toInstall=""
+for req in ${requirements}; do
+    if [[ -z "$(which ${req})" ]]; then
+        toInstall="${toInstall} ${req}"
+    fi
+done
+
+if [[ -n "${toInstall}" ]]; then
+    echo "Attempting to install: ${toInstall}"
+    sudo apt-get install -y ${toInstall}
+fi
+
+echo ""
+echo "Dependencies ready."
+echo ""
+
+echo "Press Enter to continue ... "
+read _nothing
+
+
 echo -n "Downloading LZ archive ... "
 curl -sL https://github.com/wileymab/landing-zone/blob/master/downloads/lz.zip?raw=true -o lz.zip
 echo "done."
