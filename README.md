@@ -18,9 +18,9 @@ All of that said it is easy to install, use, and even customize with a bit of sh
   - This creates a `.lz` file in that directory. This file is a copy of a template `initial.lz` file slightly modified for this particular directory.
   - This also creates a symlink in the main `zones` directory using the name of the directory as the zone id. This zone id is how a zone can be "landed in" using `lz <zone_id>`
 
-4) There is a `master.lz` file which is `source`d in the `initial.lz` file used when creating a new `lz`. This is handy for keeping some logic common to all `zones` and being able to update that logic quick so that all `zones` inherit the updates automatically.
+4) There is a `master.lz` file which is `source`d in the `initial.lz` file used when creating a new `lz`. This is handy for keeping some logic common to all `zones` and being able to update that logic quickly so that all `zones` inherit the updates automatically.
 
-5) There is built-in tab completion for zone ids when running the `lz` or `lndr` commands. Although you cna still list out all registered `zones` if needed.
+5) There is built-in tab completion for zone ids when running the `lz` or `lndr` commands. Although you can still list out all registered `zones` if needed.
 
 6) The ability to `run` commands in a `lz` (nee. `desk`) without manually loading into it has been omitted for the time being. It wasn't a feature I used.
 
@@ -100,4 +100,4 @@ source ${LANDER_HOME}/master.lz
 ```
 The top of each `.lz` file includes two comment lines each of which is prefixed with `#lz.`. These comments are special and allow you to name and describe your zones with more information. Anything provided after `#lz.name ` or `#lz.desc ` is used as the name or description value, respectively. And these values will show up in the CLI when listing all zones or attempting to load a over another.
 
-NOTE: The name and description are limited to a single line. An more than that should probably be in README in your project directory.
+NOTE: The name and description are limited to a single line. Any more than that should probably be in README in your project directory.
