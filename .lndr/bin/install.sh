@@ -31,7 +31,7 @@ echo "done."
 
 echo ""
 echo -n "Installing executable ... "
-sudo ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
+ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
 echo "done."
 
 echo ""
