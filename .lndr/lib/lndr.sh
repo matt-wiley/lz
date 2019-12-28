@@ -62,7 +62,7 @@ function createZone {
     echo ${zonePath}
     zoneDirname=`basename ${zonePath}`
     echo ${zoneDirname}
-    cp ${LANDER_HOME}/bin/initial.lz ${zonePath}/.lz
+    cp ${LANDER_HOME}/lib/initial.lz ${zonePath}/.lz
     echo "" >> ${zonePath}/.lz
     echo "initZone ${zonePath}" >> ${zonePath}/.lz
     ln -sf ${zonePath}/.lz ${LANDER_HOME}/zones/${zoneDirname} || true

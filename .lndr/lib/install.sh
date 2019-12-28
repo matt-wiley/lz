@@ -11,7 +11,9 @@ for req in ${requirements}; do
 done
 
 if [[ -n "${toInstall}" ]]; then
-    echo "Attempting to install: ${toInstall}"
+    echo ""
+    echo "Installing: ${toInstall}"
+    echo "Running: sudo apt-get install -y ${toInstall}"
     sudo apt-get install -y ${toInstall}
 fi
 echo ""
@@ -19,7 +21,7 @@ echo "Dependencies ready."
 
 echo ""
 echo -n "Downloading LZ archive ... "
-curl -sL https://github.com/wileymab/landing-zone/blob/master/downloads/lz.zip?raw=true -o lz.zip
+curl -fsSL https://github.com/wileymab/landing-zone/blob/master/downloads/lz.zip?raw=true -o lz.zip
 echo "done."
 
 echo ""
@@ -30,13 +32,15 @@ rm -rf lz.zip
 echo "done."
 
 echo ""
-echo -n "Installing executable ... "
-ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
+echo -n "Initializing zone registry ... "
+mkdir -p ${LANDER_HOME}/zones || true
 echo "done."
 
 echo ""
-echo -n "Initializing zone registry ... "
-mkdir -p ${LANDER_HOME}/zones || true
+echo -n "Adding executable to PATH ... "
+ln -sf ${LANDER_HOME}/lib/lndr.sh ${LANDER_HOME}/bin/lndr
+echo "# LZ Path Amendment" >> ~/.bashrc
+echo "export PATH=${LANDER_HOME}/bin:$PATH" >> ~/.bashrc
 echo "done."
 
 echo ""
@@ -44,5 +48,7 @@ echo -n "Initalizing zone loader in .bashrc ... "
 echo "" >> ~/.bashrc
 echo "# LZ Loader" >> ~/.bashrc
 echo "export LANDER_HOME=~/.lndr" >> ~/.bashrc
-echo "source ${LANDER_HOME}/bin/bashrc-hook.sh" >> ~/.bashrc
+echo "source ${LANDER_HOME}/lib/bashrc-hook.sh" >> ~/.bashrc
 echo "done."
+
+bash
