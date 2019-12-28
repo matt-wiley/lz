@@ -33,7 +33,7 @@ export LANDER_HOME=~/.lndr
 echo "done."
 
 echo -n "Installing executable ... "
-ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
+sudo ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
 echo "done."
 
 echo -n "Initializing zone registry ... "
