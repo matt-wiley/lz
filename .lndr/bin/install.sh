@@ -5,7 +5,7 @@ curl -sL https://github.com/wileymab/landing-zone/blob/master/downloads/lz.zip?r
 echo "done."
 
 echo -n "Unpacking LZ files ... "
-unzip -o lz.zip -d ~
+unzip -qq -o lz.zip -d ~
 export LANDER_HOME=~/.lndr
 echo "done."
 
