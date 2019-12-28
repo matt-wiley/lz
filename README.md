@@ -6,12 +6,12 @@ This derivative was developed on MacOS Mojave and designed for use in the bash e
 
 All of that said it is easy to install, use, and even customize with a bit of shell script - hell, that's where it started in the first place.
 
-**I cannot stess enough how *awesome* I think the work on [desk](https://github.com/jamesob/desk) is.** This project takes that concept and tweaks a few things.
+**I cannot stress enough how *awesome* I think the work on [desk](https://github.com/jamesob/desk) is.** This project takes that concept and tweaks a few things.
 
 1) Instead of a creating `desk`s you create `lz`s. 
-  - This is mostly a renaming, but there is a conceptual change to store the actual `lz` file WITHIN the project-space or codebase rather than in a centralized directory. 
+  - This is mostly a renaming, but there is a conceptual change to store the actual `lz` file WITHIN the project-space or code base rather than in a centralized directory. 
  
-2) `lz`s are registred centrally in a `zones` directory as symlinks
+2) `lz`s are registered centrally in a `zones` directory as symlinks
   - This means that the new shell and sourcing mechanic is largely identical to that used in [desk](https://github.com/jamesob/desk), we're just using "in situ" environment files - `lz`s - instead.
 
 3) From within any directory a new `lz` can be created and registered using the `lz new` (or `lndr new`) commands.
@@ -31,7 +31,7 @@ There is an install script included in the `bin` directory in this repo which wi
 Simply run the following in your terminal.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/wileymab/landing-zone/master/.lndr/bin/install.sh | bash --
+curl -fsSL https://raw.githubusercontent.com/wileymab/landing-zone/master/.lndr/lib/install.sh | bash --
 ```
 
 NOTE: This install requires `unzip` to be installed and will attempt to install is via `sudo apt-get ...` if it is not found. You may be prompted for you password for this. 
@@ -47,7 +47,7 @@ NOTE: A symlink is created in `/usr/local/bin` for the `lndr.sh` script once dow
 > lz new
 ```
 
-Given an out-of-the-box install and the exmaple path above, this command would create `~/dev/myProject/.lz`, and that file would be symlinked at `~/.lndr/zones/myProject`. That's it! This `lz` is ready for use and can be loaded.
+Given an out-of-the-box install and the example path above, this command would create `~/dev/myProject/.lz`, and that file would be symlinked at `~/.lndr/zones/myProject`. That's it! This `lz` is ready for use and can be loaded.
 
 ### Loading a landing zone.
 ```bash
@@ -55,7 +55,7 @@ Given an out-of-the-box install and the exmaple path above, this command would c
 ```
 Continuing the example, if we run the command above we will "load" the `myProject` zone and be dropped into a new shell in the root directory of that project (where the `.lz` file is located) and our new shell will have the `.lz` file `source`d into it's environment.
 
-NOTE: Only one zone can be loaded at a time and you can only load up one zone deep. If you are already in a loaded zone and try to load another, the load wil fail and you will need to exit your current shell (or open a new terminal tab/window/etc.) to load another.
+NOTE: Only one zone can be loaded at a time and you can only load up one zone deep. If you are already in a loaded zone and try to load another, the load will fail and you will need to exit your current shell (or open a new terminal tab/window/etc.) to load another.
 
 ### `exit`ing a landing zone.
 ```bash
