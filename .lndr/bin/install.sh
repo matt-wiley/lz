@@ -14,32 +14,32 @@ if [[ -n "${toInstall}" ]]; then
     echo "Attempting to install: ${toInstall}"
     sudo apt-get install -y ${toInstall}
 fi
-
 echo ""
 echo "Dependencies ready."
+
 echo ""
-
-echo "Press Enter to continue ... "
-read _nothing
-
-
 echo -n "Downloading LZ archive ... "
 curl -sL https://github.com/wileymab/landing-zone/blob/master/downloads/lz.zip?raw=true -o lz.zip
 echo "done."
 
+echo ""
 echo -n "Unpacking LZ files ... "
 unzip -qq -o lz.zip -d ~
-export LANDER_HOME=~/.lndr
+`export LANDER_HOME=~/.lndr`
+rm -rf lz.zip
 echo "done."
 
+echo ""
 echo -n "Installing executable ... "
 sudo ln -sf ~/.lndr/bin/lndr.sh /usr/local/bin/lndr
 echo "done."
 
+echo ""
 echo -n "Initializing zone registry ... "
 mkdir -p ${LANDER_HOME}/zones || true
 echo "done."
 
+echo ""
 echo -n "Initalizing zone loader in .bashrc ... "
 echo "" >> ~/.bashrc
 echo "# LZ Loader" >> ~/.bashrc
