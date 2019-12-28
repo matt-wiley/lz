@@ -17,8 +17,12 @@ ZONE_FORMAT_STRING="%-15s | %-20s | %s\n"
 function loadZone {
     # check is a zone is loaded first, only load if not already in a zone
     if [[ -z "$ZONE" ]]; then
-        export ZONE=$1
-        bash
+        if [[ -n "$1" ]]; then
+            export ZONE=$1
+            bash
+        else 
+            echo "No zone id provided."
+        fi
     else
         echo "Already in zone \"${ZONE}\"."
 

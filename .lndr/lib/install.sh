@@ -50,5 +50,3 @@ echo "# LZ Loader" >> ~/.bashrc
 echo "export LANDER_HOME=~/.lndr" >> ~/.bashrc
 echo "source ${LANDER_HOME}/lib/bashrc-hook.sh" >> ~/.bashrc
 echo "done."
-
-bash
