@@ -14,7 +14,7 @@ All of that said it is easy to install, use, and even customize with a bit of sh
 2) `lz`s are registred centrally in a `zones` directory as symlinks
   - This means that the new shell and sourcing mechanic is largely identical to that used in [desk](https://github.com/jamesob/desk), we're just using "in situ" environment files - `lz`s - instead.
 
-3) From within any directory and new lz can be created and registered using the `lz new` (or `lndr new`) commands.
+3) From within any directory a new `lz` can be created and registered using the `lz new` (or `lndr new`) commands.
   - This creates a `.lz` file in that directory. This file is a copy of a template `initial.lz` file slightly modified for this particular directory.
   - This also creates a symlink in the main `zones` directory using the name of the directory as the zone id. This zone id is how a zone can be "landed in" using `lz <zone_id>`
 
@@ -97,7 +97,25 @@ source ${LANDER_HOME}/master.lz
 
 #lz.name Default name
 #lz.desc Default description
+initZone /home/dev/myProject
 ```
 The top of each `.lz` file includes two comment lines each of which is prefixed with `#lz.`. These comments are special and allow you to name and describe your zones with more information. Anything provided after `#lz.name ` or `#lz.desc ` is used as the name or description value, respectively. And these values will show up in the CLI when listing all zones or attempting to load a over another.
 
 NOTE: The name and description are limited to a single line. Any more than that should probably be in README in your project directory.
+
+### Adding your stuff to `lz`s
+```bash
+#!usr/bin/env bash
+if [[ -z "${LANDER_HOME}" ]]; then echo "LANDER_HOME is not set."; exit 1; fi
+source ${LANDER_HOME}/master.lz
+
+#lz.name Default name
+#lz.desc Default description
+initZone /home/dev/myProject
+
+<your_stuff here>
+```
+
+This is where the power of [desk](https://github.com/jamesob/desk) is preserved. After the first 6 lines of you `.lz` file, the rest is yours to customize however you like. Add aliases, functions, etc. as needed. Create whatever setup you need to make sure you're getting the most out of your `lz` for your project(s).
+
+Have fun with with it! **BUT REMEMBER**: If you're going to keep sensitive information in this file such as api tokens, JWTs, passwords, etc. make sure it is *NOT COMMITTED TO VSC*. 
