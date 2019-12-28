@@ -25,7 +25,7 @@ echo "done."
 echo ""
 echo -n "Unpacking LZ files ... "
 unzip -qq -o lz.zip -d ~
-`export LANDER_HOME=~/.lndr`
+export LANDER_HOME=~/.lndr
 rm -rf lz.zip
 echo "done."
 
