@@ -40,7 +40,7 @@ NOTE: A symlink is created in `/usr/local/bin` for the `lndr.sh` script once dow
 
 ## Usage
 
-1) Creating a new landing zone.
+### Creating a new landing zone.
 ```bash
 # From desired landing zone directory (typically codebase or project root)
 # Example: ~/dev/myProject
@@ -49,7 +49,7 @@ NOTE: A symlink is created in `/usr/local/bin` for the `lndr.sh` script once dow
 
 Given an out-of-the-box install and the exmaple path above, this command would create `~/dev/myProject/.lz`, and that file would be symlinked at `~/.lndr/zones/myProject`. That's it! This `lz` is ready for use and can be loaded.
 
-2) Loading a landing zone.
+### Loading a landing zone.
 ```bash
 > lz myProject
 ```
@@ -57,13 +57,13 @@ Continuing the example, if we run the command above we will "load" the `myProjec
 
 NOTE: Only one zone can be loaded at a time and you can only load up one zone deep. If you are already in a loaded zone and try to load another, the load wil fail and you will need to exit your current shell (or open a new terminal tab/window/etc.) to load another.
 
-3) `exit`ing a landing zone.
+### `exit`ing a landing zone.
 ```bash
 > exit
 ```
 This one's really simple. We're using standard shells as our `lz`s, so leaving one is as simple as executing the shell `exit` built-in. This will return you to the parent shell and whatever you were doing prior to loading your zone.
 
-4) Listing zones in the registry.
+### Listing zones in the registry.
 ```bash
 > lz list [-l|--long]
 ```
@@ -89,7 +89,7 @@ myProject       | Default name         | Default description
 
 ```
 
-5) Adding names and descriptions to `lz`s.
+### Adding names and descriptions to `lz`s.
 ```bash
 #!usr/bin/env bash
 if [[ -z "${LANDER_HOME}" ]]; then echo "LANDER_HOME is not set."; exit 1; fi
