@@ -79,13 +79,9 @@ function createZone {
         exit
     fi
 
-    zoneFileExists=FALSE
     if [[ -e "${zonePath}/.lz" ]]; then
         echo "Zone file exists at path: ${zonePath}/.lz"
-        zoneFileExists=TRUE
-    fi
-
-    if [[ zoneFileExists == FALSE ]]; then
+    else
         cp ${LANDER_HOME}/lib/initial.lz ${zonePath}/.lz
         echo "" >> ${zonePath}/.lz
         echo "initZone ${zonePath}" >> ${zonePath}/.lz
