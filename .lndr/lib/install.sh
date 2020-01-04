@@ -40,7 +40,7 @@ echo ""
 echo -n "Adding executable to PATH ... "
 ln -sf ${LANDER_HOME}/lib/lndr.sh ${LANDER_HOME}/bin/lndr
 echo "# LZ Path Amendment" >> ~/.bashrc
-echo "export PATH=${LANDER_HOME}/bin:$PATH" >> ~/.bashrc
+echo "export PATH=\"${LANDER_HOME}/bin:$PATH\"" >> ~/.bashrc
 echo "done."
 
 echo ""
