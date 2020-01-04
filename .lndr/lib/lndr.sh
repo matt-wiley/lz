@@ -62,14 +62,39 @@ function listZones {
 }
 
 function createZone {
-    zonePath=${1:-$(pwd)}
-    echo ${zonePath}
+    
+    TRUE=1
+    FALSE=0
+
+    zonePath=$(pwd)
     zoneDirname=`basename ${zonePath}`
-    echo ${zoneDirname}
-    cp ${LANDER_HOME}/lib/initial.lz ${zonePath}/.lz
-    echo "" >> ${zonePath}/.lz
-    echo "initZone ${zonePath}" >> ${zonePath}/.lz
-    ln -sf ${zonePath}/.lz ${LANDER_HOME}/zones/${zoneDirname} || true
+
+    zoneId="${1}"
+    if [[ -z "${zoneId}" ]]; then
+        zoneId="${zoneDirname}"
+    fi
+
+    if [[ -e "${LANDER_HOME}/zones/${zoneId}" ]]; then
+        echo "Zone ID \"${zoneId}\" is taken. Please use a different zone id."
+        exit
+    fi
+
+    zoneFileExists=FALSE
+    if [[ -e "${zonePath}/.lz" ]]; then
+        echo "Zone file exists at path: ${zonePath}/.lz"
+        zoneFileExists=TRUE
+    fi
+
+    if [[ zoneFileExists == FALSE ]]; then
+        cp ${LANDER_HOME}/lib/initial.lz ${zonePath}/.lz
+        echo "" >> ${zonePath}/.lz
+        echo "initZone ${zonePath}" >> ${zonePath}/.lz
+        echo "Created Zone File: ${zonePath}/.lz"
+    fi
+
+    ln -sf ${zonePath}/.lz ${LANDER_HOME}/zones/${zoneId}
+    echo "Registered Zone ID: ${zoneId}"
+    
 }
 
 
