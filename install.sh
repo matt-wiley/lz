@@ -20,12 +20,16 @@ function main {
 
     lander_home=${user_lander_home_dir:-$lander_home}
 
-    mkdir -p "${lander_home}/bin" "${lander_home}/res"
+    mkdir -p \
+        "${lander_home}/bin" \
+        "${lander_home}/res" \
+        "${lander_home}/zones"
 
     download_component "res/master.lz"
     download_component "res/initial.lz"
     download_component "res/lz.bashrc"
     download_component "res/bash_completion.sh"
+    download_component "bin/lander.sh"
 
 }
 main "${@}"
