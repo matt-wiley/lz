@@ -1,6 +1,0 @@
-#!usr/bin/env bash
-if [[ -z "${LANDER_HOME}" ]]; then echo "LANDER_HOME is not set."; exit 1; fi
-source ${LANDER_HOME}/master.lz
-
-#lz.name Default name
-#lz.desc Default description

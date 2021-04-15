@@ -4,12 +4,12 @@ This project builds upon and revamps the work done by the contributors to [desk]
 
 This derivative was developed on MacOS Mojave and designed for use in the bash environments therein. Also, it is HIGHLY OPINIONATED to my own personal use case, and likely has compatibility issues with your personal flavor of terminal environment.
 
-All of that said it is easy to install, use, and even customize with a bit of shell script - hell, that's where it started in the first place.
+All of that said it is easy to install, use, and even customize with a bit of shell script.
 
 **I cannot stress enough how *awesome* I think the work on [desk](https://github.com/jamesob/desk) is.** This project takes that concept and tweaks a few things.
 
 1) Instead of a creating `desk`s you create `lz`s. 
-  - This is mostly a renaming, but there is a conceptual change to store the actual `lz` file WITHIN the project-space or code base rather than in a centralized directory. 
+  - This is mostly a renaming, but there is a conceptual change. `LZ` stores the actual workspace file (the `lz` file) WITHIN the project directory or code base rather than in a centralized directory. This makes it intuitive to edit as needed. 
  
 2) `lz`s are registered centrally in a `zones` directory as symlinks
   - This means that the new shell and sourcing mechanic is largely identical to that used in [desk](https://github.com/jamesob/desk), we're just using "in situ" environment files - `lz`s - instead.
