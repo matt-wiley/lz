@@ -12,8 +12,6 @@ function download_component {
 }
 
 function main {
-    
-
 
     local lander_home="./.local/.lndr"
 
@@ -25,6 +23,9 @@ function main {
     mkdir -p "${lander_home}/bin" "${lander_home}/res"
 
     download_component "res/master.lz"
+    download_component "res/initial.lz"
+    download_component "res/lz.bashrc"
+    download_component "res/bash_completion.sh"
 
 }
 main "${@}"
