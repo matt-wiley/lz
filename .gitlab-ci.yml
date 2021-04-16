@@ -6,7 +6,7 @@ mirror-to-github:
   image: ubuntu:20.04
   script: |
     apt-get update
-    apt-get install -yq --no-install-recommends git 
+    apt-get install -yq --no-install-recommends ca-certificates git 
     mkdir .mirror
     cd .mirror
     git clone --bare https://gitlab.com/mattwiley/lz.git
