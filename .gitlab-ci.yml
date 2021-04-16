@@ -5,5 +5,7 @@ clone-bare-and-mirror:
   stage: mirror-to-github
   image: ubuntu:20.04
   script: |
+    apt-get update
+    apt-get install ca-certificates git
     cd ci/;
     ./mirror_to_github.sh "${GH_USERNAME}" "${GH_TOKEN}"
