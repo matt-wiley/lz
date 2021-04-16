@@ -4,6 +4,6 @@ stages:
 clone-bare-and-mirror:
   stage: mirror-to-github
   image: ubuntu:20.04
-  script:
-    cd ci/
+  script: |
+    cd ci/;
     ./mirror_to_github.sh "${GH_USERNAME}" "${GH_TOKEN}"
