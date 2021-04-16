@@ -10,4 +10,4 @@ mirror-to-github:
     mkdir .mirror
     cd .mirror
     git clone --bare https://gitlab.com/mattwiley/lz.git
-    git push --mirror https://github.com/matt-wiley/lz.git
+    git push --mirror https://matt-wiley@github.com/matt-wiley/lz.git
