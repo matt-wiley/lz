@@ -3,6 +3,7 @@
 
 TEST_LANDER_HOME='/tmp/.lndr'
 
+
 function print_test_header {
     echo " ====================================================================== "
     echo ""
@@ -56,10 +57,10 @@ function test_cli_installed {
     assert_equal "${TEST_LANDER_HOME}" "${LANDER_HOME}"
 
     output=$(lz test)
-    assert_equal "${output}" "No zone for \"test\" is registered."
+    assert_equal "No zone for \"test\" is registered." "${output}" 
 
     output=$(lndr test)
-    assert_equal "${output}" "No zone for \"test\" is registered."
+    assert_equal "No zone for \"test\" is registered." "${output}" 
 
     print_test_footer
     afterTest

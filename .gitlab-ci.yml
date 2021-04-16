@@ -1,0 +1,11 @@
+stages:
+  - mirror-to-github
+
+build-code-job:
+  stage: mirror-to-github
+  image: ubuntu:20.04
+  script: |
+    apt-get update
+    apt-get install -yq --no-install-recommends git 
+    pwd
+    ls -la

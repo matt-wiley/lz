@@ -87,6 +87,10 @@ function main {
     echo "done."
 
     echo ""
+    echo " All set!"
+    echo ""
+    echo " You'll need to either start a new shell or run 'source ~/.bashrc' to begin using LZ."
+    echo ""
     echo " ----------------------------------------------------------------------"
     echo ""
 }
