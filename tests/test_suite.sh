@@ -93,5 +93,6 @@ function main {
 
     test_cli_installed
     test_lz_creates_new_zone
+    # TODO Add test for bash_completion.sh
 }
 main

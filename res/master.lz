@@ -12,3 +12,7 @@ function initZone {
     unset -f initZone
     # -------------------------------------------------------------------------
 }
+
+function todo {
+    grep --color -ron -e "\#\ TODO.*$" "${@}" | awk -F":" '{ printf "%s  [%s:%s]\n", $3, $1, $2}' | grep --color -e "\#.* "
+}
