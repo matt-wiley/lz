@@ -7,5 +7,5 @@ clone-bare-and-mirror:
   script: |
     apt-get update
     apt-get install -yq --no-install-recommends ca-certificates git
-    cd ci/;
+    cd ci/
     ./mirror_to_github.sh "${GH_USERNAME}" "${GH_TOKEN}"
