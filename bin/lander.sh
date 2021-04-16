@@ -227,6 +227,9 @@ function main {
             shift;
             backupAllZones "$@"
         ;;
+        "hello")
+            echo "hello"
+            ;;
         *) # load
             main load "$@"
         ;;
