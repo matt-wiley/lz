@@ -1,11 +1,20 @@
 #!/usr/bin/env bash
 
-# Prompt for a LANDER_HOME directory (default ~/.lndr)
-# curl down the bin/ and res/ directories to $LANDER_HOME/
-# append an export to the user's ~/.bashrc to establish the LANDER_HOME env var
-# smoke test the installation. ... somehow?
+# function curl { exit 1; }
+# function brew { exit 1; }
+
+LINUX="linux"
+MACOS="macos"
 
 BASE_URL="https://gitlab.com/mattwiley/lz/-/raw/main/"
+
+function determine_os {
+    if [[ "$(test -e /Library && echo yes)" == "yes" ]]; then 
+        echo $MACOS
+    else 
+        echo $LINUX
+    fi
+}
 
 function download {
     echo -n " > Installing ${1} ... "
@@ -14,12 +23,11 @@ function download {
 }
 
 function is_installed {
-    local cmd_text="${1} -h"
-    $cmd_text 2>/dev/null 1>/dev/null
-    if [[ $? -gt 0 ]]; then
-        echo 1
-    else
+    local cmd_text="${1} --version"
+    if [[ $(test "$($cmd_text)" && echo yes) == "yes" ]]; then
         echo 0
+    else
+        echo 1
     fi
 }
 
@@ -38,8 +46,28 @@ function ensure_dependencies_installed {
 
     if [[ $dependencies_met -gt 0 ]]; then 
         echo " > Installing missing dependencies. (${dependencies_met})"
-        apt-get update
-        apt-get install -yq --no-install-recommends "${dependencies[@]}"
+        if [[ "${OS}" == "${LINUX}" ]]; then 
+            sudo apt-get update
+            sudo apt-get install -yq --no-install-recommends "${dependencies[@]}"
+        else 
+            if [[ "${OS}" == "${MACOS}" ]]; then 
+                if [[ $(test -n "$(brew --version)" && echo yes) == "yes" ]]; then 
+                    for dep in "${dependencies[@]}"; do
+                        brew install "${dep}"
+                    done 
+                else 
+                    echo ""
+                    echo "Unable to install required dependencies."
+                    echo "Detected MacOS and attempted to install dependencies via Homebrew."
+                    echo "Homebrew was not detected."
+                    echo "Please visit https://brew.sh to install Homebrew and continue installation."
+                    echo ""
+                    echo " ----------------------------------------------------------------------"
+                    echo ""
+                    exit 1
+                fi 
+            fi 
+        fi 
     fi
 }
 
@@ -52,6 +80,8 @@ function main {
     echo "  Installing LZ "
     echo ""
 
+    local OS=$(determine_os)
+
     local lander_home="${HOME}/.lndr"
 
     if [[ -z "${LANDER_HOME}" ]]; then 
@@ -62,8 +92,11 @@ function main {
         lander_home="${LANDER_HOME}"
     fi
 
-    apt-get update
-    apt-get install -yq ca-certificates
+    if [[ "${OS}" == "$LINUX" ]]; then
+        # Ensure that the CA Certs are installed for curl downloads
+        apt-get update
+        apt-get install -yq ca-certificates
+    fi
     ensure_dependencies_installed
 
     mkdir -p \
@@ -81,11 +114,11 @@ function main {
     chmod +x "${lander_home}/bin/lander.sh"
     ln -sf  "${lander_home}/bin/lander.sh" /usr/local/bin/lndr
     ln -sf "${lander_home}/bin/lander.sh" /usr/local/bin/lz
-    echo "done."
+    echo " done."
 
     echo -n " > Exporting LANDER_HOME=${lander_home} into ~/.bashrc file ..."
     echo "export LANDER_HOME='${lander_home}'" >> ~/.bashrc
-    echo "done."
+    echo " done."
 
     echo ""
     echo " All set!"
