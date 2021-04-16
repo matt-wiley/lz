@@ -9,6 +9,7 @@ BASE_URL="https://gitlab.com/mattwiley/lz/-/raw/main/"
 
 function download {
     echo -n " > Installing ${1} ... "
+    # TODO Stop using the -k option. Get the Haxx Certs installed.
     curl -ksL "${BASE_URL}/${1}" -o "${lander_home}/${1}"
     echo "done."
 }

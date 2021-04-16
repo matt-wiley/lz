@@ -14,5 +14,9 @@ function initZone {
 }
 
 function todo {
-    grep --color -ron -e "\#\ TODO.*$" "${@}" | awk -F":" '{ printf "%s  [%s:%s]\n", $3, $1, $2}' | grep --color -e "\#.* "
+    targets="${@}"
+    if [[ -z "${@}" ]]; then 
+        targets="."
+    fi
+    grep --color -ron -e "\#\ TODO.*$" "${targets}" | awk -F":" '{ printf "%s  [%s:%s]\n", $3, $1, $2}' | grep --color -e "\#.* "
 }
