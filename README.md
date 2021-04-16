@@ -31,12 +31,8 @@ There is an install script included in the `bin` directory in this repo which wi
 Simply run the following in your terminal.
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/wileymab/landing-zone/master/.lndr/lib/install.sh | bash --
+curl -fsSL https://gitlab.com/mattwiley/lz/-/raw/main/install.sh | bash --
 ```
-
-NOTE: This install requires `unzip` to be installed and will attempt to install is via `sudo apt-get ...` if it is not found. You may be prompted for you password for this. 
-
-NOTE: A symlink is created in `/usr/local/bin` for the `lndr.sh` script once downloaded. This is executed using `sudo ln -s ...`. You may be prompted for you password for this. 
 
 ## Usage
 
