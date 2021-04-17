@@ -1,6 +1,6 @@
 stages:
   - mirror-to-github
-  - pages
+  - deploy
 
 clone-bare-and-mirror:
   stage: mirror-to-github
@@ -11,14 +11,11 @@ clone-bare-and-mirror:
     cd ci/
     ./mirror_to_github.sh "${GH_USERNAME}" "${GH_TOKEN}"
 
-# pages:
-#   stage: deploy
-#   script:
-#     - mkdir .public
-#     - cp -r * .public
-#     - mv .public public
-#   artifacts:
-#     paths:
-#       - public
-#   rules:
-#     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+pages:
+  stage: deploy
+  script: echo ""
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
