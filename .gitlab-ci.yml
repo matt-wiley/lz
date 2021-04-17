@@ -1,5 +1,6 @@
 stages:
   - mirror-to-github
+  - pages
 
 clone-bare-and-mirror:
   stage: mirror-to-github
@@ -9,3 +10,15 @@ clone-bare-and-mirror:
     apt-get install -yq --no-install-recommends ca-certificates git
     cd ci/
     ./mirror_to_github.sh "${GH_USERNAME}" "${GH_TOKEN}"
+
+# pages:
+#   stage: deploy
+#   script:
+#     - mkdir .public
+#     - cp -r * .public
+#     - mv .public public
+#   artifacts:
+#     paths:
+#       - public
+#   rules:
+#     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
