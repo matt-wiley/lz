@@ -13,8 +13,9 @@ clone-bare-and-mirror:
 
 pages:
   stage: deploy
+  image: ubuntu:20.04
   script: |
-    touch ./public/x.txt
+    cp -r .public public
   artifacts:
     paths:
       - public
