@@ -13,7 +13,8 @@ clone-bare-and-mirror:
 
 pages:
   stage: deploy
-  script: echo ""
+  script: |
+    touch ./public/x.txt
   artifacts:
     paths:
       - public
