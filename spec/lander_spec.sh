@@ -13,6 +13,8 @@ Describe 'Lander'
     }
 
     setup() {
+        prepare_environment
+        
         cp ~/.bashrc ~/.bashrc.bak
         
         LANDER_HOME="${LANDER_HOME}" \
