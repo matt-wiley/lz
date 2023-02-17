@@ -131,14 +131,14 @@ function main {
     ln -sf "${lander_home}/bin/lander.sh" /usr/local/bin/lz
     echo " done."
 
-    echo -n " > Exporting LANDER_HOME=${lander_home} into ~/.bashrc file ..."
-    echo "export LANDER_HOME='${lander_home}'" >> ~/.bashrc
+    echo -n " > Exporting LANDER_HOME=${lander_home} into ${HOME}/.bashrc file ..."
+    echo "export LANDER_HOME='${lander_home}'" >> ${HOME}/.bashrc
     echo " done."
 
     echo ""
     echo " All set!"
     echo ""
-    echo " You'll need to either start a new shell or run 'source ~/.bashrc' to begin using LZ."
+    echo " You'll need to either start a new shell or run 'source ${HOME}/.bashrc' to begin using LZ."
     echo ""
     echo " ----------------------------------------------------------------------"
     echo ""

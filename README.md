@@ -49,11 +49,11 @@ curl -fsSL https://gitlab.com/mattwiley/lz/-/raw/main/install.sh | bash --
 
 ```bash
 # From desired landing zone directory (typically codebase or project root)
-# Example: ~/dev/myProject
+# Example: ${HOME}/dev/myProject
 > lz new
 ```
 
-Given an out-of-the-box install and the example path above, this command would create `~/dev/myProject/.lz`, and that file would be symlinked at `~/.lndr/zones/myProject`. That's it! This `lz` is ready for use and can be loaded.
+Given an out-of-the-box install and the example path above, this command would create `${HOME}/dev/myProject/.lz`, and that file would be symlinked at `${HOME}/.lndr/zones/myProject`. That's it! This `lz` is ready for use and can be loaded.
 
 ### Loading an `lz`
 

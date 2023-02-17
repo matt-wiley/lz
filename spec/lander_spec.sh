@@ -5,13 +5,14 @@ Describe 'Lander'
     setup() {
         whoami
         pwd
-        if [[ ! -e "~/.bashrc" ]]; then
-            touch "~/.bashrc"
+        
+        if [[ ! -e "${HOME}/.bashrc" ]]; then
+            touch "${HOME}/.bashrc"
             echo "Created empty .bashrc."
         fi
         echo ""
 
-        cp ~/.bashrc ~/.bashrc.bak
+        cp "${HOME}/.bashrc" "${HOME}/.bashrc.bak"
         
         LANDER_HOME="${LANDER_HOME}" \
         BASE_URL="${BASE_URL}" \
@@ -22,8 +23,8 @@ Describe 'Lander'
     cleanup() { 
         # :
         rm -rf ./tmp
-        cp ~/.bashrc.bak ~/.bashrc
-        rm ~/.bashrc.bak
+        cp "${HOME}/.bashrc.bak" "${HOME}/.bashrc"
+        rm "${HOME}/.bashrc.bak"
     }
 
 

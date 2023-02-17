@@ -3,9 +3,9 @@
 if [[ -f /etc/bash.bashrc ]]; then
     source /etc/bash.bashrc
 fi
-if [[ -f ~/.bashrc ]]; then
+if [[ -f ${HOME}/.bashrc ]]; then
     # shellcheck disable=SC1090
-    source ~/.bashrc
+    source ${HOME}/.bashrc
 fi
 
 #  Call the Lander Post Load Hook
