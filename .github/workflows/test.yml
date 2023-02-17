@@ -11,4 +11,4 @@ jobs:
       - run: |
           export HOME=/root
           export SKIP_CA_UPDATE=0 # Enable CA updates so we can pull from GitHub
-          shellspec --jobs 1 --format documentation
+          .scripts/test_runner.sh

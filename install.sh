@@ -62,7 +62,7 @@ function ensure_dependencies_installed {
     if [[ $dependencies_met -gt 0 ]]; then 
         echo " > Installing missing dependencies. (${dependencies_met})"
         if [[ "${OS}" == "${LINUX}" ]]; then 
-            sudo apt-get update
+            sudo apt-get --force-depends update
             sudo apt-get install -yq --no-install-recommends "${dependencies[@]}"
         else 
             if [[ "${OS}" == "${MACOS}" ]]; then 
@@ -110,7 +110,7 @@ function main {
     if [[ "${OS}" == "$LINUX" && $SKIP_CA_UPDATE -eq $FALSE ]]; then
         # Ensure that the CA Certs are installed for curl downloads
         apt-get update
-        apt-get install -yq apt-utils ca-certificates
+        apt-get install -yq --force-depends ca-certificates
     fi
     ensure_dependencies_installed
 
