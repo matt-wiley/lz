@@ -13,6 +13,17 @@ DEFAULT_BASE_URL="https://gitlab.com/mattwiley/lz/-/raw/main/"
 BASE_URL="${BASE_URL:-$DEFAULT_BASE_URL}"
 SKIP_CA_UPDATE=${SKIP_CA_UPDATE:-$FALSE}
 
+function bool {
+    if [[ $1 -eq $TRUE ]]; then
+        echo "true"
+    else 
+        if [[ $1 -eq $FALSE ]]; then 
+            echo "false"
+        else
+            echo "unknown"
+        fi
+    fi
+}
 
 function determine_os {
     test -e /Library
@@ -132,4 +143,8 @@ function main {
     echo " ----------------------------------------------------------------------"
     echo ""
 }
+
+echo "BASE_URL=${BASE_URL}"
+echo "SKIP_CA_UPDATE=$(bool ${SKIP_CA_UPDATE})"
+
 main "${@}"
