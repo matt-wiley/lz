@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 
+# TODO Should we reimplement these tests using shellspec? (https://github.com/shellspec/shellspec)
 
 TEST_LANDER_HOME='/tmp/.lndr'
-
+export LANDER_HOME=${TEST_LANDER_HOME}
 
 function print_test_header {
     echo " ====================================================================== "
@@ -19,7 +20,7 @@ function print_test_footer {
 
 function install_lz {
     echo -n "Running LZ installation ... "
-    LANDER_HOME="${TEST_LANDER_HOME}" ../install.sh 1>/dev/null
+    LANDER_HOME="${TEST_LANDER_HOME}" BASE_URL=http://host.docker.internal:8080 SKIP_CA_UPDATE=1 ../install.sh
     echo "done."
     echo ""
 }
@@ -42,9 +43,9 @@ function afterTest {
 
 function assert_equal {
     if [[ "${1}" != "${2}" ]]; then 
-        printf " [x] Assertion FAILED | %s \n\tExpected: %s \n\t  Actual: %s\n" "${3}" "${1}" "${2}"
+        printf "$RED [x] Assertion FAILED  | %s \n\tExpected: %s \n\t  Actual: %s\n" "${3}" "${1}" "${2} $CLEAR"
     else
-        printf " [ ] Assertion PASSED | \n\tExpected: %s \n\t  Actual: %s\n" "${1}" "${2}"
+        printf "$GREEN [ ] Assertion PASSED | \n\tExpected: %s \n\t  Actual: %s\n" "${1}" "${2} $CLEAR"
     fi
 }
 
@@ -90,8 +91,6 @@ function test_lz_creates_new_zone {
 
 
 function main {
-    install_lz
-
     test_cli_installed
     test_lz_creates_new_zone
     # TODO Add test for bash_completion.sh

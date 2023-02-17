@@ -3,13 +3,21 @@
 # function curl { exit 1; }
 # function brew { exit 1; }
 
+TRUE=1
+FALSE=0
 LINUX="linux"
 MACOS="macos"
+DEFAULT_BASE_URL="https://gitlab.com/mattwiley/lz/-/raw/main/"
 
-BASE_URL="https://gitlab.com/mattwiley/lz/-/raw/main/"
+
+BASE_URL="${BASE_URL:-$DEFAULT_BASE_URL}"
+SKIP_CA_UPDATE=${SKIP_CA_UPDATE:-$FALSE}
+
 
 function determine_os {
-    if [[ "$(test -e /Library && echo yes)" == "yes" ]]; then 
+    test -e /Library
+    result=$(echo $?)
+    if [[ $result -eq 0 ]]; then 
         echo $MACOS
     else 
         echo $LINUX
@@ -23,12 +31,8 @@ function download {
 }
 
 function is_installed {
-    local cmd_text="${1} --version"
-    if [[ $(test "$($cmd_text)" && echo yes) == "yes" ]]; then
-        echo 0
-    else
-        echo 1
-    fi
+    test "$(which ${1})"
+    echo $?
 }
 
 function ensure_dependencies_installed {
@@ -92,7 +96,7 @@ function main {
         lander_home="${LANDER_HOME}"
     fi
 
-    if [[ "${OS}" == "$LINUX" ]]; then
+    if [[ "${OS}" == "$LINUX" && $SKIP_CA_UPDATE -eq $FALSE ]]; then
         # Ensure that the CA Certs are installed for curl downloads
         apt-get update
         apt-get install -yq ca-certificates

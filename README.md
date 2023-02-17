@@ -1,9 +1,5 @@
 # landing-zone (aka. `lndr`, aka. `lz`)
 
-
-| [![badge](https://img.shields.io/static/v1?logo=gitlab&label=&message=mattwiley/lz&color=blue)](https://gitlab.com/mattwiley/lz)  | This is actively developed in Gitlab, and mirrored to Github for broader visibility. |
-|:-|:-|
-
 > This project builds upon and revamps the work done by the contributors to [desk](https://github.com/jamesob/desk).
 >
 > This derivative was developed on MacOS Mojave and designed for use in the bash environments therein. Also, it is HIGHLY OPINIONATED to my own personal use case, and likely has compatibility issues with your personal flavor of terminal environment.

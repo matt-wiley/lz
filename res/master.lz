@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+CYAN="\\[\\e[36m\\]"
+RED="\\[\\e[31m\\]"
+GREEN="\\[\\e[32m\\]"
+CLEAR="\\[\\e[00m\\]"
+
 function initZone {
     local zoneRootPath="$1"
     export ZONE_ROOT="$zoneRootPath"
@@ -10,13 +15,35 @@ function initZone {
 
     # Teardown this function once complete.
     unset -f initZone
-    # -------------------------------------------------------------------------
 }
 
-function todo {
-    targets="${@}"
-    if [[ -z "${@}" ]]; then 
-        targets="."
-    fi
-    grep --color -ron -e "\#\ TODO.*$" "${targets}" | awk -F":" '{ printf "%s  [%s:%s]\n", $3, $1, $2}' | grep --color -e "\#.* "
+function path_in_zone {
+    cur_dir="$(pwd -L)"
+    echo '.'${cur_dir#"${ZONE_ROOT}"}
 }
+
+function _git {
+    if [[ $(git branch --show-current 2>/dev/null) ]]; then 
+      current_branch="$(git branch --show-current)"
+      echo " (${current_branch})"
+    else 
+      echo ""
+    fi
+}
+
+export PS1="$CYAN[${ZONE}]$RED\$(_git)$CLEAR \$(path_in_zone) > "
+
+# 
+# This function allows for writing other functions as though they are run at
+# ZONE_ROOT without having to explicitly implement the directory traversals in
+# each function
+#
+function run_at_zone_root {
+    back="$(pwd -L)"
+    cd "${ZONE_ROOT}"
+    "${@}"
+    cd "${back}"
+}
+alias razr='run_at_zone_root'
+
+alias ,,='razr source .lz'
