@@ -2,11 +2,17 @@ LANDER_HOME="./tmp/lander"
 
 Describe 'Lander'
     # https://github.com/shellspec/shellspec#beforeall-afterall---example-group-hook
-    setup() {
+    prepare_environment() {
         whoami
         pwd
+        if [[ ! -e "~/.bashrc" ]]; then
+            touch "~/.bashrc"
+            echo "Created empty .bashrc."
+        fi
         echo ""
-        
+    }
+
+    setup() {
         cp ~/.bashrc ~/.bashrc.bak
         
         LANDER_HOME="${LANDER_HOME}" \
