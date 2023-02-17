@@ -19,8 +19,16 @@ function run_tests {
 }
 
 function main {
+    case "${1}" in 
+        "docker")
+            BASE_URL="http://host.docker.internal:8080"
+            ;;
+        *)
+            ;;
+    esac
+
     setup
     run_tests
     cleanup
 }
-main
+main "${@}"

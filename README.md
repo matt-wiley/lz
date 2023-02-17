@@ -137,3 +137,50 @@ initZone /home/dev/myProject
 This is where the power of [desk](https://github.com/jamesob/desk) is preserved. After the first 6 lines of you `.lz` file, the rest is yours to customize however you like. Add aliases, functions, etc. as needed. Create whatever setup you need to make sure you're getting the most out of your `lz` for your project(s).
 
 Have fun with with it! **BUT REMEMBER**: If you're going to keep sensitive information in this file such as api tokens, JWTs, passwords, etc. make sure it is *NOT COMMITTED TO VCS*. 
+
+## Development
+
+### Testing
+
+The cleanest way to test this project is to run the tests inside a docker container. This is how the tests are executed in CI. To emulate the CI process locally us the following steps.
+
+#### Prerequisites
+
+- `python 3.8+` is installed on your machine
+- `docker` is installed on your machine
+
+
+#### Running Tests
+
+Tests are written using [Shellspec](https://github.com/shellspec/shellspec#shellspec). They can be found under the [spec folder](./spec/). Setup, test, and teardown are handled via the [test_runner.sh script](.scripts/test_runner.sh).
+
+##### Step 1: Start a local web server
+
+The installation process for LZ involves downloading various files to a known location. To support this locally (and speed up the development process) we first need to run an HTTP web server out of the project root directory. This will allow the installation to mimic downloading resources from GitHub.
+
+```shell
+# From the project root directory
+> python -m http.server 8080
+```
+
+> **Note:** This guide assumes the use of `python`, but any available web server will do. We recommend this because of the easy of use, but feel free to use whatever your familiar with.
+
+> **Note:** Port `8080` is important. It is hardcoded in the [test_runner.sh script](.scripts/test_runner.sh). If you need to run the web server on a different port you will need to change the port in the [test_runner.sh script](.scripts/test_runner.sh)
+
+##### Step 2: Run the tests
+
+To run the test cleanly we run them inside a container that already has [Shellspec](https://github.com/shellspec/shellspec#shellspec) installed. When we execute the [test_runner.sh script](.scripts/test_runner.sh), we pass it the `docker` argument to ensure it uses the correct `BASE_URL` and download the resources from our local web server.
+
+```shell
+# From the project root directory
+> docker run -it --rm -v "$(pwd):$(pwd)" -w "$(pwd)" \
+    --network host mattwiley/shellspec \
+    bash -c ".scripts/test_runner.sh docker"
+```
+
+> **Note:** A slightly modifed version of the command above is provided as a Make target. If you have the `make` build tooling installed you can run tests with:
+> 
+> ```shell
+> # From the project root directory
+> > make test
+> ```
