@@ -5,18 +5,13 @@ Describe 'Lander'
     setup() {
         whoami
         pwd
-        
-        if [[ ! -e "${HOME}/.bashrc" ]]; then
-            touch "${HOME}/.bashrc"
-            echo "Created empty .bashrc."
-        fi
         echo ""
 
         cp "${HOME}/.bashrc" "${HOME}/.bashrc.bak"
         
         LANDER_HOME="${LANDER_HOME}" \
         BASE_URL="${BASE_URL}" \
-        SKIP_CA_UPDATE=1 \
+        SKIP_CA_UPDATE=${SKIP_CA_UPDATE:-1} \
         ./install.sh
     }
     
