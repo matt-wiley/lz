@@ -3,6 +3,10 @@ LANDER_HOME="./tmp/lander"
 Describe 'Lander'
     # https://github.com/shellspec/shellspec#beforeall-afterall---example-group-hook
     setup() {
+        whoami
+        pwd
+        echo ""
+        
         cp ~/.bashrc ~/.bashrc.bak
         
         LANDER_HOME="${LANDER_HOME}" \
