@@ -1,4 +1,7 @@
 
+DEFAULT_TEST_REPORT_PATH="report/results_junit.xml"
+TEST_REPORT_PATH=${TEST_REPORT_PATH:-$DEFAULT_TEST_REPORT_PATH}
+
 function install_lz {
     cp "${HOME}/.bashrc" "${HOME}/.bashrc.bak"
 
@@ -15,7 +18,14 @@ function cleanup {
 }
 
 function run_tests {
-    shellspec --jobs 1 -f t --output junit
+    shellspec --jobs 1 --format documentation --output junit
+}
+
+function adjust_report {
+    local adjusted_report="cleaned_report.xml"
+    cat "${TEST_REPORT_PATH}" | sed -E 's/classname/file/g' > $adjusted_report
+    mv -vf "$adjusted_report" "${TEST_REPORT_PATH}"
+    cat "${TEST_REPORT_PATH}"
 }
 
 function main {
@@ -29,6 +39,7 @@ function main {
 
     install_lz
     run_tests
+    adjust_report
     cleanup
 }
 main "${@}"

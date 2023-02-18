@@ -1,7 +1,8 @@
 build-docker:
 	docker build -t mattwiley/shellspec -f docker/shellspec.Dockerfile .
 
-
+clean:
+	rm -rf report tmp 
 
 test:
 	docker run -it --rm \

@@ -20,15 +20,10 @@ jobs:
 
       - name: Execute Tests
         shell: bash
-        run: |
-          export HOME=/root # Correct the HOME env
-          export SKIP_CA_UPDATE=0 # Enable CA updates so we can pull from GitHub
-          .scripts/test_runner.sh
-
-      - name: Correct JUnit XML
-        run: |
-          cat "${{ env.TEST_REPORT_PATH }}" | sed 's/classname/file/g' > "${{ env.TEST_REPORT_PATH }}"
-          cat "${{ env.TEST_REPORT_PATH }}"
+        env:
+          HOME: /root # Correct the HOME env
+          SKIP_CA_UPDATE: 0 # Enable CA updates so we can pull from GitHub
+        run: .scripts/test_runner.sh
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v3
