@@ -1,8 +1,8 @@
 LANDER_HOME="./tmp/lander"
 
 
-Describe 'Lander >'
-    Describe 'Installation >'
+Describe 'Lander'
+    Describe 'Installation'
     
         Specify "LANDER_HOME is set"
             The variable LANDER_HOME should equal "${LANDER_HOME}"

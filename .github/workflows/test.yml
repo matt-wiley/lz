@@ -36,3 +36,4 @@ jobs:
           report_paths: ${{ env.TEST_REPORT_PATH }}
           include_passed: true
           detailed_summary: true
+          check_title_template: "{{FILE_NAME}}: {{TEST_NAME}}"
