@@ -18,7 +18,7 @@ Describe 'Lander'
             The path "${LANDER_HOME}/res/master.lz" should be file
         End
         
-        Specify "inSpecifyial.lz exists"
+        Specify "initial.lz exists"
             The path "${LANDER_HOME}/res/initial.lz" should exist
             The path "${LANDER_HOME}/res/initial.lz" should be file
         End

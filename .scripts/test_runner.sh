@@ -15,7 +15,7 @@ function cleanup {
 }
 
 function run_tests {
-    shellspec --jobs 1 --format documentation
+    shellspec --jobs 1 --format documentation --output junit
 }
 
 function main {
