@@ -142,7 +142,7 @@ Have fun with with it! **BUT REMEMBER**: If you're going to keep sensitive infor
 
 ### Testing
 
-The cleanest way to test this project is to run the tests inside a docker container. This is how the tests are executed in CI. To emulate the CI process locally us the following steps.
+The cleanest way to test this project is to run the tests inside a docker container. This is how the tests are executed in CI. To emulate the CI process locally use the following steps.
 
 #### Prerequisites
 
@@ -163,7 +163,7 @@ The installation process for LZ involves downloading various files to a known lo
 > python -m http.server 8080
 ```
 
-> **Note:** This guide assumes the use of `python`, but any available web server will do. We recommend this because of the easy of use, but feel free to use whatever your familiar with.
+> **Note:** This guide assumes the use of `python`, but any available web server will do. We recommend this because of the easy of use, but feel free to use whatever you're familiar with.
 
 > **Note:** Port `8080` is important. It is hardcoded in the [test_runner.sh script](.scripts/test_runner.sh). If you need to run the web server on a different port you will need to change the port in the [test_runner.sh script](.scripts/test_runner.sh)
 
