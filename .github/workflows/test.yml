@@ -28,7 +28,7 @@ jobs:
       - name: Correct JUnit XML
         run: |
           cat "${{ env.TEST_REPORT_PATH }}" | sed 's/classname/file/g' > "${{ env.TEST_REPORT_PATH }}"
-          cat "${{ env.TEST_REPORT_PATH }}"
+          # cat "${{ env.TEST_REPORT_PATH }}"
 
       - name: Publish Test Report
         uses: mikepenz/action-junit-report@v3
