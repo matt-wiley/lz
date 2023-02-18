@@ -28,3 +28,4 @@ jobs:
           report_paths: 'report/results_junit.xml'
           include_passed: true
           detailed_summary: true
+          job_name: Publish Test Report
