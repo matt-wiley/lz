@@ -1,6 +1,8 @@
 build-docker:
 	docker build -t mattwiley/shellspec -f docker/shellspec.Dockerfile .
 
+
+
 test:
 	docker run -it --rm \
 		-v "$(shell pwd):$(shell pwd)" \

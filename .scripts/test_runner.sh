@@ -1,5 +1,5 @@
 
-function setup {
+function install_lz {
     cp "${HOME}/.bashrc" "${HOME}/.bashrc.bak"
 
     LANDER_HOME="${LANDER_HOME:-./tmp/lander}" \
@@ -15,7 +15,7 @@ function cleanup {
 }
 
 function run_tests {
-    shellspec --jobs 4 -f t -o j
+    shellspec --jobs 1 -f t --output junit
 }
 
 function main {
@@ -27,7 +27,7 @@ function main {
             ;;
     esac
 
-    setup
+    install_lz
     run_tests
     cleanup
 }
