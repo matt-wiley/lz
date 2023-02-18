@@ -150,7 +150,7 @@ The cleanest way to test this project is to run the tests inside a docker contai
 - `docker` is installed on your machine
 
 
-#### Running Tests
+#### Running Tests - The Long Route
 
 Tests are written using [Shellspec](https://github.com/shellspec/shellspec#shellspec). They can be found under the [spec folder](./spec/). Setup, test, and teardown are handled via the [test_runner.sh script](.scripts/test_runner.sh).
 
@@ -178,9 +178,20 @@ To run the test cleanly we run them inside a container that already has [Shellsp
     bash -c ".scripts/test_runner.sh docker"
 ```
 
-> **Note:** A slightly modifed version of the command above is provided as a Make target. If you have the `make` build tooling installed you can run tests with:
+> **Note:** A slightly modified version of the command above is provided as a Make target. If you have the `make` build tooling installed you can run tests with:
 > 
 > ```shell
 > # From the project root directory
 > > make test
 > ```
+
+#### Running Tests - The Short Route
+
+If you have the `make` build tooling installed, the process outlined in [Running Tests - The Long Route](#running-tests---the-long-route) is automated in the [Makefile](./Makefile) with the following command:
+
+```shell
+# From the project root directory
+> make local-test
+```
+
+This will automatically start the python web server, run tests inside a container, and shutdown the web server when the tests are complete.

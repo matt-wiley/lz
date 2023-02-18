@@ -25,7 +25,7 @@ function adjust_report {
     local adjusted_report="cleaned_report.xml"
     cat "${TEST_REPORT_PATH}" | sed -E 's/classname/file/g' > $adjusted_report
     mv -vf "$adjusted_report" "${TEST_REPORT_PATH}"
-    cat "${TEST_REPORT_PATH}"
+    # cat "${TEST_REPORT_PATH}"
 }
 
 function main {
