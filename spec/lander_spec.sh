@@ -4,7 +4,7 @@ Context 'Lander'
 
     # =========================================================================
     # 
-    Context 'Installation'
+    Context '[Installation]'
     
         Specify "LANDER_HOME is set"
             The variable LANDER_HOME should equal "${LANDER_HOME}"
@@ -41,7 +41,7 @@ Context 'Lander'
 
     # =========================================================================
     # 
-    Context 'Create New Zone'
+    Context '[Create New Zone]'
         run_lz_new() {
             local testProjectPath="./tmp/codespace/testProject"
             mkdir -p "${testProjectPath}"
