@@ -1,8 +1,10 @@
-LANDER_HOME="./tmp/lander"
+export LANDER_HOME="$(pwd -P)/tmp/lander"
 
+Context 'Lander'
 
-Describe 'Lander'
-    Describe 'Installation'
+    # =========================================================================
+    # 
+    Context 'Installation'
     
         Specify "LANDER_HOME is set"
             The variable LANDER_HOME should equal "${LANDER_HOME}"
@@ -34,5 +36,38 @@ Describe 'Lander'
         End
 
     End
+    #
+    # -------------------------------------------------------------------------
+
+    # =========================================================================
+    # 
+    Context 'Create New Zone'
+        run_lz_new() {
+            local testProjectPath="./tmp/codespace/testProject"
+            mkdir -p "${testProjectPath}"
+            cd "${testProjectPath}"
+            lz new
+        }
+        cleanup() {
+            cd "${LANDER_HOME}/../.."
+            rm -rf "./tmp/codespace/"
+            rm -rf "${LANDER_HOME}/zones/testProject"
+        }
+        BeforeAll 'run_lz_new'
+        AfterAll 'cleanup'
+
+        Specify "zone file exists in project"
+            The path "${LANDER_HOME}/../codespace/testProject/.lz" should exist
+            The path "${LANDER_HOME}/../codespace/testProject/.lz" should be file
+        End
+
+        Specify "zone file is symlinked in LANDER_HOME/zones directory"
+            The path "${LANDER_HOME}/zones/testProject" should exist
+            The path "${LANDER_HOME}/zones/testProject" should be symlink
+        End
+
+    End
+    #
+    # -------------------------------------------------------------------------
 
 End

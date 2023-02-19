@@ -115,7 +115,7 @@ function deleteZone {
             read -r SHOULD_CONTINUE
         fi
 
-        if [[ ! "$SHOULD_CONTINUE" =${HOME} ^(y|n)$ ]]; then
+        if [[ ! "$SHOULD_CONTINUE" =~ ^(y|n)$ ]]; then
             printf "Please enter a 'y' or and 'n'. Try Again.\n"
             continue
         else
@@ -170,7 +170,7 @@ function backupAllZones {
     here="$(pwd)"
     cd ${HOME}
     home_path=$(pwd)
-    if [[ "${home_path}" =${HOME} /Users ]]; then
+    if [[ "${home_path}" =~ /Users ]]; then
         OS="Mac"
     fi
     cd "$back"

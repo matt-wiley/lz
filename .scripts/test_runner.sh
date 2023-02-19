@@ -1,24 +1,27 @@
 
+DEFAULT_LANDER_HOME_FOR_TESTING="$(pwd -P)/tmp/lander"
+
 DEFAULT_TEST_REPORT_PATH="report/results_junit.xml"
 TEST_REPORT_PATH=${TEST_REPORT_PATH:-$DEFAULT_TEST_REPORT_PATH}
 
 function install_lz {
     cp "${HOME}/.bashrc" "${HOME}/.bashrc.bak"
 
-    LANDER_HOME="${LANDER_HOME:-./tmp/lander}" \
+    LANDER_HOME="${LANDER_HOME:-$DEFAULT_LANDER_HOME_FOR_TESTING}" \
     BASE_URL="${BASE_URL}" \
     SKIP_CA_UPDATE="${SKIP_CA_UPDATE:-1}" \
     ./install.sh
 }
 
 function cleanup {
+    read user_continue
     rm -rf ./tmp
     cp "${HOME}/.bashrc.bak" "${HOME}/.bashrc"
     rm "${HOME}/.bashrc.bak"
 }
 
 function run_tests {
-    shellspec --jobs 1 --format documentation --output junit
+    shellspec --shell /bin/bash --jobs 1 --format documentation --output junit
 }
 
 function adjust_report {
