@@ -14,7 +14,7 @@ function install_lz {
 }
 
 function cleanup {
-    read user_continue
+    # read user_continue
     rm -rf ./tmp
     cp "${HOME}/.bashrc.bak" "${HOME}/.bashrc"
     rm "${HOME}/.bashrc.bak"
