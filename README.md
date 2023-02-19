@@ -1,5 +1,7 @@
 # landing-zone (aka. `lndr`, aka. `lz`)
 
+[![Tests](https://github.com/matt-wiley/lz/actions/workflows/test.yml/badge.svg)](https://github.com/matt-wiley/lz/actions/workflows/test.yml)
+
 > This project builds upon and revamps the work done by the contributors to [desk](https://github.com/jamesob/desk).
 >
 > This derivative was developed on MacOS Mojave and designed for use in the bash environments therein. Also, it is HIGHLY OPINIONATED to my own personal use case, and likely has compatibility issues with your personal flavor of terminal environment.
