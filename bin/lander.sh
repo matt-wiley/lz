@@ -15,30 +15,24 @@ function createZone {
 
 function loadZone {
 
-    if [[ -e "./.lz" ]]; then
-        export ZONE="$(basename $(pwd))"
-        bash --rcfile "${LANDER_HOME}/res/lz.bashrc" -i
+    if [[ -n "${ZONE}" ]]; then
+        echo "Already in zone \"${ZONE}\"."
+        echo "Exit this shell to load a new zone."
+        return
     elif [[ -z "${1}" ]]; then
-        echo "No zonefile found and no zone name provided."
-        exit 1
+        if [[ -e "./.lz" ]]; then
+            export ZONE="$(basename $(pwd))"
+            bash --rcfile "${LANDER_HOME}/res/lz.bashrc" -i
+        else
+            echo "No zonefile found and no zone name provided."
+            exit 1
+        fi
     elif [[ -z "$ZONE" ]]; then
         # check if a zone is loaded first, only load if not already in a zone
         export ZONE=$1
         bash --rcfile "${LANDER_HOME}/res/lz.bashrc" -i
     else
-        echo "Already in zone \"${ZONE}\"."
-
-        name=$(grep -e "#lz.name " "${ZONE_ROOT}/.lz" | sed 's/\#lz\.name //')
-        desc=$(grep -e "#lz.desc " "${ZONE_ROOT}/.lz" | sed 's/\#lz\.desc //')
-
-        echo ""
-        formatString="${ZONE_FORMAT_STRING}"
-        printf "${formatString}" "Zone ID"         "Zone Name"            "Zone Description"
-        printf "${formatString}" "---------------" "--------------------" "--------------------"
-        printf "${formatString}" "${ZONE}" "${name}" "${desc}"
-        echo ""
-
-        echo "Exit this shell to load a new zone."
+      : # do nothinge
     fi
 }
 
