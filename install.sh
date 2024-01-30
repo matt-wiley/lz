@@ -46,6 +46,12 @@ function is_installed {
     echo $?
 }
 
+if [[ "${OS}" == "${MACOS}" ]]; then 
+    function sudo {
+        $@
+    }
+fi
+
 function ensure_dependencies_installed {
     local dependencies=(
         "curl"
@@ -129,8 +135,8 @@ function main {
 
     echo -n " > Installing the cli ..."
     chmod +x "${lander_home}/bin/lander.sh"
-    ln -sf  "${lander_home}/bin/lander.sh" /usr/local/bin/lndr
-    ln -sf "${lander_home}/bin/lander.sh" /usr/local/bin/lz
+    sudo ln -sf  "${lander_home}/bin/lander.sh" /usr/local/bin/lndr
+    sudo ln -sf "${lander_home}/bin/lander.sh" /usr/local/bin/lz
     echo " done."
 
     echo -n " > Exporting LANDER_HOME=${lander_home} into ${HOME}/.bashrc file ..."
