@@ -1,8 +1,8 @@
-
+#!/usr/bin/env bash
 
 function start_web_server {
     printf "\nStarting webserver ... "
-    python -m http.server 8080 2>&1>/dev/null &
+    python3 -m http.server 8080 2>&1>/dev/null &
     printf "done.\n\n"
     sleep 1
 }
