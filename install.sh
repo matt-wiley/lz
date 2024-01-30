@@ -47,11 +47,11 @@ function is_installed {
 }
 
 
-# if [[ $(is_installed "sudo") -eq 1 ]]; then 
-#     function sudo {
-#         $@
-#     }
-# fi
+if [[ $(is_installed "sudo") -eq 1 ]]; then 
+    function sudo {
+        $@
+    }
+fi
 
 
 function ensure_dependencies_installed {
