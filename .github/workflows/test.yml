@@ -23,6 +23,7 @@ jobs:
         env:
           HOME: /root # Correct the HOME env
           SKIP_CA_UPDATE: 0 # Enable CA updates so we can pull from GitHub
+          BASE_URL: "https://raw.githubusercontent.com/matt-wiley/lz/${{ github.ref }}/"
         run: .scripts/test_runner.sh
 
       - name: Publish Test Report

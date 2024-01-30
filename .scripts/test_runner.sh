@@ -34,7 +34,7 @@ function adjust_report {
 function main {
     case "${1}" in 
         "docker")
-            BASE_URL="http://host.docker.internal:8080"
+            BASE_URL="http://localhost:8080"
             ;;
         *)
             ;;

@@ -7,7 +7,7 @@ TRUE=1
 FALSE=0
 LINUX="linux"
 MACOS="macos"
-DEFAULT_BASE_URL="https://gitlab.com/mattwiley/lz/-/raw/main/"
+DEFAULT_BASE_URL="https://raw.githubusercontent.com/matt-wiley/lz/main"
 
 
 BASE_URL="${BASE_URL:-$DEFAULT_BASE_URL}"
