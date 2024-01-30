@@ -54,12 +54,6 @@ function is_installed {
 # fi
 
 
-if [[ ("${OS}" == "${MACOS}") || ("$(hostname -i)" =~ 172\.) ]]; then 
-    function sudo {
-        $@
-    }
-fi
-
 function ensure_dependencies_installed {
     local dependencies=(
         "curl"
