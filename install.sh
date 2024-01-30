@@ -46,7 +46,15 @@ function is_installed {
     echo $?
 }
 
-if [[ "${OS}" == "${MACOS}" ]]; then 
+
+if [[ $(is_installed "sudo") -eq 1 ]]; then 
+    function sudo {
+        $@
+    }
+fi
+
+
+if [[ ("${OS}" == "${MACOS}") || ("$(hostname -i)" =~ 172\.) ]]; then 
     function sudo {
         $@
     }
