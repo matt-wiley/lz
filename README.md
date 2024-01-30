@@ -42,7 +42,7 @@ This wasn't a feature I used. So I've left it for future implementation.
 Simply run the following in your terminal.
 
 ```bash
-curl -fsSL https://gitlab.com/mattwiley/lz/-/raw/main/install.sh | bash --
+curl -fsSL https://raw.githubusercontent.com/matt-wiley/lz/v1/install.sh | bash --
 ```
 
 ## Usage
