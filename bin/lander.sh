@@ -21,9 +21,8 @@ function loadZone {
     elif [[ -z "${1}" ]]; then
         echo "No zonefile found and no zone name provided."
         exit 1
-    fi
-    # check if a zone is loaded first, only load if not already in a zone
-    if [[ -z "$ZONE" ]]; then
+    elif [[ -z "$ZONE" ]]; then
+        # check if a zone is loaded first, only load if not already in a zone
         export ZONE=$1
         bash --rcfile "${LANDER_HOME}/res/lz.bashrc" -i
     else
