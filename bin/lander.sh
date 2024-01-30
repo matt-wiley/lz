@@ -83,7 +83,8 @@ function listZones {
             printf "\n"
             ;;
         *)
-            find "${LANDER_HOME}/zones" -type l -exec basename {} \;
+            # find "${LANDER_HOME}/zones" -type l -exec basename {} \;
+            ls -la "${LANDER_HOME}/zones" | grep -E "^l" | sed -E "s/^l.*[0-9]{2}:?[0-9]{2} //" | sed -E "s/ ->.*$//"
             ;;
     esac
 }
@@ -167,6 +168,33 @@ function deleteZone {
 
 }
 
+
+function pruneZones {
+    #
+    # Removes all zones with bad path links
+    #
+    local back="$(pwd)"
+    cd "${LANDER_HOME}/zones"
+
+    pre_prune_count=$(ls | wc -l | grep -oE "[0-9]+")
+    echo $pre_prune_count
+
+    listings=$(find . -type l)
+    for listing in $listings; do
+        total_count=$(($total_count+1))
+        if $(cat "${listing}" 1>/dev/null); then
+            echo -n ""
+        else
+            rm "${listing}"
+            echo -n ""
+        fi
+    done 
+
+    post_prune_count=$(ls | wc -l | grep -oE "[0-9]+")
+    echo $post_prune_count
+}
+
+
 function backupAllZones {
 
     OS="Linux"
@@ -226,6 +254,10 @@ function main {
         "delete")
             shift;
             deleteZone "$@"
+        ;;
+        "prune")
+            shift;
+            pruneZones
         ;;
         "backup")
             shift;

@@ -6,12 +6,12 @@ GREEN="\\[\\e[32m\\]"
 CLEAR="\\[\\e[00m\\]"
 
 function initZone {
-    local zoneRootPath="$1"
+    local zoneRootPath="$@" #Using $@ handles paths with spaces
     export ZONE_ROOT="$zoneRootPath"
     # shellcheck disable=SC2164
-    cd "$ZONE_ROOT"
+    cd "${ZONE_ROOT}"
     
-    alias ...='cd $ZONE_ROOT'
+    alias ...='cd "${ZONE_ROOT}"'
 
     # Teardown this function once complete.
     unset -f initZone
