@@ -110,9 +110,11 @@ function main {
     if [[ "${OS}" == "$LINUX" && $SKIP_CA_UPDATE -eq $FALSE ]]; then
         # Ensure that the CA Certs are installed for curl downloads
         apt-get update
-        apt-get install -yq --force-depends ca-certificates
+        apt-get install -yq ca-certificates
     fi
     ensure_dependencies_installed
+
+    echo "LZ installation directory: ${lander_home}"
 
     mkdir -p \
         "${lander_home}/bin" \
