@@ -27,7 +27,7 @@ jobs:
         run: .scripts/test_runner.sh
 
       - name: Publish Test Report
-        uses: mikepenz/action-junit-report@v3
+        uses: mikepenz/action-junit-report@v4.1.0
         with:
           check_name: '📑 Test Summary'
           report_paths: ${{ env.TEST_REPORT_PATH }}
