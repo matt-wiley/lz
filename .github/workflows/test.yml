@@ -16,7 +16,7 @@ jobs:
       TEST_REPORT_PATH: report/results_junit.xml
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Execute Tests
         shell: bash
